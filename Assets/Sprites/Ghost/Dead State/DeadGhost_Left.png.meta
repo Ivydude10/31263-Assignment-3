@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 964bdc70abe9ef548b2df74358b7c085
+guid: 02fb6b0ecf4ccbe4fa11578ab0dbc827
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2587277674313606053
-    second: DeadGhost (4)_0
+      213: -6177089642527468122
+    second: DeadGhost_Left_0
   - first:
-      213: -1097164703162532203
-    second: DeadGhost (4)_1
+      213: -4156235341650690307
+    second: DeadGhost_Left_1
   - first:
-      213: -9087904334110007201
-    second: DeadGhost (4)_2
+      213: -265682431298654346
+    second: DeadGhost_Left_2
   - first:
-      213: -1659357838664072960
-    second: DeadGhost (4)_3
+      213: -6597344859964941042
+    second: DeadGhost_Left_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeadGhost (4)_0
+      name: DeadGhost_Left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c1d37c9a4281cd0800000000000000
-      internalID: -2587277674313606053
+      spriteID: 6a5d76f92b1964aa0800000000000000
+      internalID: -6177089642527468122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeadGhost (4)_1
+      name: DeadGhost_Left_1
       rect:
         serializedVersion: 2
         x: 128
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59e76e7f38616c0f0800000000000000
-      internalID: -1097164703162532203
+      spriteID: dfe7cf93af51256c0800000000000000
+      internalID: -4156235341650690307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeadGhost (4)_2
+      name: DeadGhost_Left_2
       rect:
         serializedVersion: 2
         x: 0
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f50e3ac682741e180800000000000000
-      internalID: -9087904334110007201
+      spriteID: 67fa1638c3b105cf0800000000000000
+      internalID: -265682431298654346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeadGhost (4)_3
+      name: DeadGhost_Left_3
       rect:
         serializedVersion: 2
         x: 128
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0010b2f56d6c8f8e0800000000000000
-      internalID: -1659357838664072960
+      spriteID: e0d5a09ddc58174a0800000000000000
+      internalID: -6597344859964941042
       vertices: []
       indices: 
       edges: []
