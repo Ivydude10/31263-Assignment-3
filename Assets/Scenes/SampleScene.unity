@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 879819054}
   - component: {fileID: 879819055}
   - component: {fileID: 879819056}
+  - component: {fileID: 879819057}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -461,6 +462,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 7a5a1c9b1f2afad47b352241f70b4e46, type: 3}
+--- !u!114 &879819057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879819053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18779f2119823534e9fddc45e675f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSegments:
+  - {fileID: 0}
+  - {fileID: 6477727278215424123, guid: e7b7532ffb4104646896bbf8f0a74be4, type: 3}
+  - {fileID: 147558523167878902, guid: be1ea1b4d65b937489d65155091ac8b1, type: 3}
+  - {fileID: 1400401450773624394, guid: 22f5fdcd2e539d04e801e823259ae624, type: 3}
+  - {fileID: 2636437800532930217, guid: 97b67f316fc52f843b93b119502fa6b0, type: 3}
+  - {fileID: 5996267822068385948, guid: b6051aba4da9f5341b311869b532a252, type: 3}
+  - {fileID: 4818481280344097320, guid: 24427701cc4fc6f4f9a06d58ecb49498, type: 3}
+  - {fileID: 5754884579644977556, guid: 0c6a9a266b7d29c49b0bb5e7bbf039d8, type: 3}
+  grid: {fileID: 953299258}
 --- !u!1 &953299258
 GameObject:
   m_ObjectHideFlags: 0

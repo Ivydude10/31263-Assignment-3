@@ -31,9 +31,12 @@ public class LevelGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateMap();
-        grid.transform.position = new Vector2(-(levelMap.GetLength(0)-2), levelMap.GetLength(1));
-         
+        CreateMap(0);
+        CreateMap(1);
+        CreateMap(2);
+        CreateMap(3);
+        //grid.transform.position = new Vector2(-(levelMap.GetLength(0)-2), levelMap.GetLength(1));
+        //Instantiate(grid, new Vector2(0, 0), Quaternion.Euler(0, 180, 0)); 
     }
 
     // Update is called once per frame
@@ -42,16 +45,31 @@ public class LevelGenerator : MonoBehaviour
         
     }
 
-    void CreateMap()
+    void CreateMap(int dir)
     {
+        Vector2 startPos;
+        
         for(int i=0; i<levelMap.GetLength(0); i++)
         {
             for(int j=0; j<levelMap.GetLength(1); j++)
             {
+                switch (dir)
+                {
+                    case 0: startPos = new Vector2(j-(levelMap.GetLength(1)-1), -i+(levelMap.GetLength(0)-1));
+                            break; 
+                    case 1: startPos = new Vector2(-j+(levelMap.GetLength(1)), -i+(levelMap.GetLength(0)-1));
+                            break;
+                    case 2: startPos = new Vector2(-j+(levelMap.GetLength(1)), i-(levelMap.GetLength(0)-1));
+                            break; 
+                    case 3: startPos = new Vector2(j-(levelMap.GetLength(1)-1), i-(levelMap.GetLength(0)-1));
+                            break;  
+                    default: startPos = new Vector2(j-(levelMap.GetLength(1)-1), -i+(levelMap.GetLength(0)-1));
+                            break;
+                }
                 int currSegment = levelMap[i, j];
                 if(currSegment!=0)
                 {
-                    levelPiece = Instantiate(levelSegments[currSegment], new Vector2(j, -i), Quaternion.identity, grid.transform);
+                    levelPiece = Instantiate(levelSegments[currSegment], startPos, Quaternion.identity, grid.transform);
                     levelPiece.transform.rotation = detRotation(i, j, currSegment);
                 }
             }
