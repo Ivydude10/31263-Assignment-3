@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject[] levelSegments;
     public GameObject grid;
+    public GameObject manualGrid;
     GameObject levelPiece;
 
     int[,] levelMap =
@@ -31,6 +32,7 @@ public class LevelGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(manualGrid);
         CreateMap(0);
         CreateMap(1);
         CreateMap(2);
@@ -70,22 +72,42 @@ public class LevelGenerator : MonoBehaviour
                 if(currSegment!=0)
                 {
                     levelPiece = Instantiate(levelSegments[currSegment], startPos, Quaternion.identity, grid.transform);
-                    levelPiece.transform.rotation = detRotation(i, j, currSegment);
+                    levelPiece.transform.rotation = detRotation(i, j, currSegment, dir);
                 }
             }
         }
     }
 
-    Quaternion detRotation(int i, int j, int currSegment)
+    Quaternion detRotation(int i, int j, int currSegment, int dir)
     {
         switch (currSegment)
         {
-            case 1:  return cornerRotation(i, j);
+            case 1:  return cornerRotation(i, j, dir);
             case 2:  return wallRotation(i, j);
-            case 3:  return cornerRotation(i, j);
+            case 3:  return cornerRotation(i, j, dir);
             case 4:  return wallRotation(i, j);
+            case 7:  return juncRotation(i, j, dir); 
             default: return Quaternion.identity;
         }
+    }
+
+    Quaternion juncRotation(int i, int j, int dir)
+    {
+        if(i==0)
+            switch (dir)
+            {  
+                case 0: return Quaternion.Euler(0, 0, 270); break;
+                case 1: return Quaternion.Euler(0, 180, 270); break;
+                case 2: return Quaternion.Euler(0, 0, 90); break;
+                case 3: return Quaternion.Euler(0, 180, 90); break;
+                default: return Quaternion.identity; break;
+            }
+            // if(dir%2!=0)
+            //     return Quaternion.Euler(0, 180, -90);
+            // else
+            //     return Quaternion.Euler(0, 0, -90);
+        else
+            return Quaternion.identity;
     }
 
     Quaternion wallRotation(int i, int j)
@@ -113,50 +135,49 @@ public class LevelGenerator : MonoBehaviour
         }
         if(levelMap[i, j] == 4)
         {
-            return Quaternion.identity;
+            if(levelMap[i, j-1] != 4 && levelMap[i, j-1] != 3)
+                return Quaternion.identity;
+            else
+                return Quaternion.Euler(0, 0, 90);
         }
         else
                 return Quaternion.identity;
     }
 
-    Quaternion cornerRotation(int i, int j)
+    Quaternion cornerRotation(int i, int j, int dir)
     {
+        float offset = dir*90;
         if(i==0 && j==0)
-            return Quaternion.Euler(0, 0, -90);
+            return Quaternion.Euler(0, 0, -90-offset);
         if(i==0 || j==0)
-        {
-            return Quaternion.identity;
-        }
+            return Quaternion.Euler(0, 0, 0+offset);
         else if(levelMap[i, j] == 1)
         {
             if(levelMap[i, j-1] == 1 ||levelMap[i, j-1] == 2 || levelMap[i, j-1] == 7)
             {
                 if(levelMap[i-1, j] == 1 ||levelMap[i-1, j] == 2 || levelMap[i-1, j] == 7)
-                    return Quaternion.Euler(0, 0, 90);
+                    return Quaternion.Euler(0, 0, 90-offset);
                 else
-                    return Quaternion.Euler(0, 0, 180);
+                    return Quaternion.Euler(0, 0, 180+offset);
             }
             else
                     return Quaternion.identity;
         }
         else if(levelMap[i, j] == 3)
         {
-            if(levelMap[i-1, j] == 4)
+            if(levelMap[i-1, j] != 4 && levelMap[i-1, j] != 3)
             {
-                if(levelMap[i, j-1] == 4)
-                    return Quaternion.Euler(0, 0, 90);
+                if(levelMap[i, j-1] != 4 && levelMap[i, j-1] != 3)
+                    return Quaternion.Euler(0, 0, 270-offset);
                 else
-                    return Quaternion.identity;
+                    return Quaternion.Euler(0, 0, 180+offset);
             }
-            // else
-            // {
-            //     if(levelMap[i, j-1] == 4)
-            //         return Quaternion.Euler(0, 0, 180);
-            //     else
-            //         return Quaternion.identity;
-            // }
+            else if(levelMap[i, j-1] != 4 && levelMap[i, j-1] != 3)
+            {
+                return Quaternion.Euler(0, 0, 0+offset);
+            }
             else
-                return Quaternion.identity;
+                return Quaternion.Euler(0, 0, 90-offset);
         }
         else
             return Quaternion.identity;
