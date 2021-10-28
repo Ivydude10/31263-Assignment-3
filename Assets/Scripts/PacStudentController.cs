@@ -6,6 +6,7 @@ public class PacStudentController : MonoBehaviour
 {
     public Animator animator;
     public AudioSource steps;
+    public ParticleSystem dust;
     private Tween tween = null;
     private float duration = 1f;
     private string lastInput;
@@ -47,7 +48,7 @@ public class PacStudentController : MonoBehaviour
 
     void Start()
     {
-        //steps.Stop();
+        
     }
 
     // Update is called once per frame
@@ -89,7 +90,10 @@ public class PacStudentController : MonoBehaviour
         if (!CheckValid(currentInput))
             currentInput = null;
         if (!steps.isPlaying)
+        {
             steps.Play();
+            dust.Play();
+        }
         switch (currentInput)
         {
             case "W":
@@ -147,6 +151,7 @@ public class PacStudentController : MonoBehaviour
             default:
                 animator.SetFloat("Speed", 0.0f);
                 steps.Stop();
+                dust.Stop();
                 break;
         }
     }
