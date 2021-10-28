@@ -1034,6 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 369658339}
+  steps: {fileID: 693828789}
 --- !u!82 &693828789
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1349,6 +1350,7 @@ GameObject:
   - component: {fileID: 879819055}
   - component: {fileID: 879819056}
   - component: {fileID: 879819057}
+  - component: {fileID: 879819058}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1473,7 +1475,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879819053}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5471df168f9b2f941bacb37194a8cd6d, type: 3}
   m_Name: 
@@ -1502,6 +1504,20 @@ MonoBehaviour:
   - {fileID: 5754884579644977556, guid: 0c6a9a266b7d29c49b0bb5e7bbf039d8, type: 3}
   grid: {fileID: 953299258}
   manualGrid: {fileID: 943458958}
+--- !u!114 &879819058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879819053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1582220458ee9e84fba0abc48b684324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cherryPrefab: {fileID: 6186145238784471264, guid: 5d6789380d5e66e41a9ecfa49177faad, type: 3}
+  main: {fileID: 519420031}
 --- !u!1 &928618663
 GameObject:
   m_ObjectHideFlags: 0
@@ -8596,7 +8612,7 @@ Tilemap:
       - {fileID: -4171049787479600614, guid: 4f05c62b6bdd64d469de735af33b11bf, type: 3}
       - {fileID: -4682550878044536045, guid: 4f05c62b6bdd64d469de735af33b11bf, type: 3}
       - {fileID: 3179351808706811216, guid: 4f05c62b6bdd64d469de735af33b11bf, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 12, y: 11, z: 0}

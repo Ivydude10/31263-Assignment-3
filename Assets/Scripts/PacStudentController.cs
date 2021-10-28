@@ -5,6 +5,7 @@ using UnityEngine;
 public class PacStudentController : MonoBehaviour
 {
     public Animator animator;
+    public AudioSource steps;
     private Tween tween = null;
     private float duration = 1f;
     private string lastInput;
@@ -46,7 +47,7 @@ public class PacStudentController : MonoBehaviour
 
     void Start()
     {
-        
+        //steps.Stop();
     }
 
     // Update is called once per frame
@@ -83,8 +84,12 @@ public class PacStudentController : MonoBehaviour
 
     void SetMove()
     {
-        if(CheckValid())
+        if(CheckValid(lastInput))
             currentInput = lastInput;
+        if (!CheckValid(currentInput))
+            currentInput = null;
+        if (!steps.isPlaying)
+            steps.Play();
         switch (currentInput)
         {
             case "W":
@@ -124,6 +129,7 @@ public class PacStudentController : MonoBehaviour
         animator.ResetTrigger("Left");
         animator.ResetTrigger("Down");
         animator.ResetTrigger("Right");
+        animator.SetFloat("Speed", 1.0f);
         switch (currentInput)
         {
             case "W":
@@ -139,13 +145,15 @@ public class PacStudentController : MonoBehaviour
                 animator.SetTrigger("Right"); 
                 break;
             default:
+                animator.SetFloat("Speed", 0.0f);
+                steps.Stop();
                 break;
         }
     }
 
-    bool CheckValid()
+    bool CheckValid(string input)
     {
-        switch (lastInput)
+        switch (input)
         {
             case "W":
                 return (levelMap[currX - 1, currY] == 0 || levelMap[currX - 1, currY] == 5 || levelMap[currX - 1, currY] == 6);
