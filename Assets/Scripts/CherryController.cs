@@ -6,16 +6,14 @@ public class CherryController : MonoBehaviour
 {
 
     public GameObject cherryPrefab;
-    public Camera main;
-    private GameObject cherry;
-    private Tween tween;
+    private GameObject cherry = null;
     private float timer = 0;
     private float count = 0;
     private float randSpawn;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(main.scaledPixelWidth);
+        
     }
 
     // Update is called once per frame
@@ -25,8 +23,13 @@ public class CherryController : MonoBehaviour
         if(timer-count > 10)
         {
             SpawnCherry();
-            Fly();
+            
             count = timer;
+        }
+        if (cherry != null)
+        {
+            Fly();
+            Destroy();
         }
     }
 
@@ -38,7 +41,13 @@ public class CherryController : MonoBehaviour
 
     private void Fly()
     {
-        float timeFraction = (Time.time - count) / 10;
+        float timeFraction = (Time.time - count) / 8;
         cherry.transform.position = Vector2.Lerp(new Vector3(randSpawn, 17, 0), new Vector3(-randSpawn, -17, 0), timeFraction);
+    }
+
+    private void Destroy()
+    {
+        if (cherry.transform.position == new Vector3(-randSpawn, -17, 0))
+            Destroy(cherry);
     }
 }
