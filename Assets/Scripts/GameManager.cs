@@ -23,5 +23,10 @@ public class GameManager : MonoBehaviour
         {
             score += 10;
         }
+        if(name == "Cherry")
+        {
+            score += 100;
+        }
+
     }
 }

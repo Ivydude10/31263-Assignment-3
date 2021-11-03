@@ -37,6 +37,8 @@ public class CherryController : MonoBehaviour
     {
         randSpawn = Random.Range(-20, 20);
         cherry = Instantiate(cherryPrefab, new Vector3(randSpawn, 17, 0), Quaternion.identity);
+        cherry.name = "Cherry";
+        Debug.Log(cherry.transform.position);
     }
 
     private void Fly()
