@@ -172,4 +172,9 @@ public class PacStudentController : MonoBehaviour
                 return false;
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
 }
