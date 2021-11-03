@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private AudioSource source;
-    private GameManager gameManager;
     private Text score;
     private Text time;
     private float timer;
@@ -23,7 +22,7 @@ public class UIManager : MonoBehaviour
         if(score!=null)
         {
             timer += Time.deltaTime;
-            score.text = gameManager.score.ToString();
+            score.text = GameManager.score.ToString();
             time.text = CalcTimer();
         }
     }
@@ -46,7 +45,6 @@ public class UIManager : MonoBehaviour
         if (scene.buildIndex == 1)
         {
             Button exit = GameObject.FindWithTag("ExitButton").GetComponent<Button>();
-            gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
             score = GameObject.FindWithTag("Score").GetComponent<Text>();
             time = GameObject.FindWithTag("Time").GetComponent<Text>();
             exit.onClick.AddListener(ExitGame);

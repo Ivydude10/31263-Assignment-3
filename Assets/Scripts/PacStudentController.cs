@@ -175,6 +175,7 @@ public class PacStudentController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        GameManager.EatItem(other.name);
         Destroy(other.gameObject);
     }
 }

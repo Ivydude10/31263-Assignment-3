@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int score;
+    public static int score;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void EatItem(string name)
+    public static void EatItem(string name)
     {
         if(name == "Pellet")
         {
