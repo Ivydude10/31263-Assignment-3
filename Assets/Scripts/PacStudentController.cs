@@ -8,7 +8,7 @@ public class PacStudentController : MonoBehaviour
     public AudioSource steps;
     public ParticleSystem dust;
     private Tween tween = null;
-    private float duration = 1f;
+    private float duration = 0.5f;
     private string lastInput;
     private string currentInput;
     private int currX = 1, currY = 1;
