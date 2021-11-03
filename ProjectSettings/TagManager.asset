@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ExitButton
+  - Score
+  - Time
+  - Game Manager
   layers:
   - Default
   - TransparentFX

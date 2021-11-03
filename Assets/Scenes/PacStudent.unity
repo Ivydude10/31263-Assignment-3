@@ -7360,9 +7360,10 @@ GameObject:
   - component: {fileID: 879819056}
   - component: {fileID: 879819057}
   - component: {fileID: 879819058}
+  - component: {fileID: 879819059}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Game Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7526,6 +7527,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryPrefab: {fileID: 6186145238784471264, guid: 5d6789380d5e66e41a9ecfa49177faad, type: 3}
+--- !u!114 &879819059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879819053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb2399661c9af94d860186bcd7878a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1001 &887926181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13552,7 +13566,7 @@ GameObject:
   - component: {fileID: 1360388843}
   m_Layer: 5
   m_Name: Time
-  m_TagString: Untagged
+  m_TagString: Time
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14966,7 +14980,7 @@ GameObject:
   - component: {fileID: 1947608948}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
