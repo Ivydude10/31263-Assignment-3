@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     private AudioSource source;
     private Text score;
     private Text time;
+    private static Text scared;
+    private static Text scaredTime;
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class UIManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         source.enabled = false;
+        Time.timeScale = 0.0f;
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -47,6 +50,10 @@ public class UIManager : MonoBehaviour
             Button exit = GameObject.FindWithTag("ExitButton").GetComponent<Button>();
             score = GameObject.FindWithTag("Score").GetComponent<Text>();
             time = GameObject.FindWithTag("Time").GetComponent<Text>();
+            scared = GameObject.FindWithTag("Scared Ghost").GetComponent<Text>();
+            scaredTime = GameObject.FindWithTag("Scared Timer").GetComponent<Text>();
+            scared.enabled = false;
+            scaredTime.enabled = false;
             exit.onClick.AddListener(ExitGame);
         }
     }
@@ -56,6 +63,23 @@ public class UIManager : MonoBehaviour
         int min = Mathf.FloorToInt(timer / 60f);
         int sec = Mathf.FloorToInt(timer % 60f);
         int millSec = Mathf.FloorToInt((timer * 100f) % 100f);
-        return min.ToString("00") + ":" + sec.ToString("00") + ":" + millSec.ToString("00"); ;
+        return min.ToString("00") + ":" + sec.ToString("00") + ":" + millSec.ToString("00");
+    }
+
+    public static void StartGhost()
+    {
+        scared.enabled = true;
+        scaredTime.enabled = true;
+    } 
+    
+    public static void EndGhost()
+    {
+        scared.enabled = false;
+        scaredTime.enabled = false;
+    }
+
+    public static void GhostTime(string time)
+    {
+        scaredTime.text = time;
     }
 }
