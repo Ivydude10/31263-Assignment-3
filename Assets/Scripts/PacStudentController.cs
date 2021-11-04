@@ -54,13 +54,16 @@ public class PacStudentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tween != null)
-            CheckTween();
-        GetMovementInput();
-        if (tween == null)
-            SetMove();
-        MovePacStudent();
-        WalkingAnimation();
+        if (GameManager.inputEnabled == true)
+        {
+            if (tween != null)
+                CheckTween();
+            GetMovementInput();
+            if (tween == null)
+                SetMove();
+            MovePacStudent();
+            WalkingAnimation();
+        }
     }
 
     void CheckTween()
@@ -171,11 +174,5 @@ public class PacStudentController : MonoBehaviour
             default:
                 return false;
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        GameManager.EatItem(other.name);
-        Destroy(other.gameObject);
     }
 }

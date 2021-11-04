@@ -5,7 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static int score;
+    public static bool inputEnabled = false;
+    public Text countdown;
     // Start is called before the first frame update
+        StartCoroutine(Countdown());
     void Start()
     {
         score = 0;
@@ -28,5 +31,20 @@ public class GameManager : MonoBehaviour
             score += 100;
         }
 
+    IEnumerator Countdown()
+    {
+        countdown.text = "3";
+        yield return new WaitForSecondsRealtime(1);
+        countdown.text = "2";
+        yield return new WaitForSecondsRealtime(1);
+        countdown.text = "1";
+        yield return new WaitForSecondsRealtime(1);
+        countdown.text = "GO!";
+        yield return new WaitForSecondsRealtime(1);
+        countdown.enabled = false;
+        Time.timeScale = 1.0f;
+        inputEnabled = true;
+        bgMusic.Play();
     }
+
 }
