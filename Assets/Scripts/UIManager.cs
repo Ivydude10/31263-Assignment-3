@@ -6,22 +6,30 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
     private AudioSource source;
-    private Text score;
-    private Text time;
+    public Text score;
+    public Text time;
     private static Text scared;
     private static Text scaredTime;
     private float timer;
+    private int index;
+
+    void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        source = this.GetComponent<AudioSource>();
+        index = SceneManager.GetActiveScene().buildIndex;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(score!=null)
+        if(score!=null && index == 1)
         {
             timer += Time.deltaTime;
             score.text = GameManager.score.ToString();
@@ -54,6 +62,7 @@ public class UIManager : MonoBehaviour
             scaredTime = GameObject.FindWithTag("Scared Timer").GetComponent<Text>();
             scared.enabled = false;
             scaredTime.enabled = false;
+            index = 1;
             exit.onClick.AddListener(ExitGame);
         }
     }
