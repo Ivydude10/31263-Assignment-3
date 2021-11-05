@@ -96,11 +96,11 @@ public class LevelGenerator : MonoBehaviour
         if(i==0)
             switch (dir)
             {  
-                case 0: return Quaternion.Euler(0, 0, 270); break;
-                case 1: return Quaternion.Euler(0, 180, 270); break;
-                case 2: return Quaternion.Euler(0, 0, 90); break;
-                case 3: return Quaternion.Euler(0, 180, 90); break;
-                default: return Quaternion.identity; break;
+                case 0: return Quaternion.Euler(0, 0, 270);
+                case 1: return Quaternion.Euler(0, 180, 270);
+                case 2: return Quaternion.Euler(0, 0, 90);
+                case 3: return Quaternion.Euler(0, 180, 90);
+                default: return Quaternion.identity;
             }
             // if(dir%2!=0)
             //     return Quaternion.Euler(0, 180, -90);
