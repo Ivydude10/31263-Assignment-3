@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -67,6 +68,19 @@ public class GameManager : MonoBehaviour
         bgMusic.Play();
     }
 
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        countdown.enabled = true;
+        bgMusic.Stop();
+        PacStudentController.Instance.GameOver();
+        Time.timeScale = 0.0f;
+        countdown.text = "Game Over";
+        yield return new WaitForSecondsRealtime(3); 
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
+    }
+
     void PowerUp()
     {
         if (time == 10)
@@ -108,5 +122,10 @@ public class GameManager : MonoBehaviour
     {
         bgMusic.clip = musicTracks[2];
         bgMusic.Play();
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(EndGame());
     }
 }

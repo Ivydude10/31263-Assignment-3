@@ -4,28 +4,38 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private const int totalPellets = 218;
+    private int currPellets = 0;
+
     void OnTriggerEnter(Collider other)
     {
         switch(other.name)
         {
             case "Pellet":
+                currPellets += 1;
+                PacStudentController.Instance.EatSound();
+                EatItem(other);
+                if (currPellets == totalPellets)
+                    GameOver();
+                break;
             case "Power Pellet":
             case "Cherry":
-                GameManager.Instance.EatItem(other.name);
-                Destroy(other.gameObject);
+                EatItem(other);
                 break;
 
         }
+    }
+
+    void EatItem(Collider other)
+    {
+        GameManager.Instance.EatItem(other.name);
+        Destroy(other.gameObject);
+    }
+
+    void GameOver()
+    {
+        SaveManager.SaveScore(UIManager.Instance.score.text, UIManager.Instance.time.text);
+        GameManager.Instance.GameOver();
     }
 }
