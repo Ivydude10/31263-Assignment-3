@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PacStudentController : MonoBehaviour
 {
+    public static PacStudentController Instance;
     public Animator animator;
     public AudioSource steps;
+    public AudioSource collSound;
+    public AudioClip wallCollide;
+    public AudioClip eatPellet;
     public ParticleSystem dust;
     private Tween tween = null;
     private float duration = 0.5f;
     private string lastInput;
     private string currentInput;
     private int currX = 1, currY = 1;
+    private bool wall = true;
 
     int[,] levelMap = 
     { 
@@ -46,9 +51,9 @@ public class PacStudentController : MonoBehaviour
         {1,2,2,2,2,2,2,2,2,2,2,2,2,7,7,2,2,2,2,2,2,2,2,2,2,2,2,1},
     };
 
-    void Start()
+    void Awake()
     {
-        
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -88,15 +93,19 @@ public class PacStudentController : MonoBehaviour
 
     void SetMove()
     {
-        if(CheckValid(lastInput))
+        CheckTeleport();
+        if (CheckValid(lastInput))
+        {
             currentInput = lastInput;
+            if (!steps.isPlaying)
+            {
+                steps.Play();
+                dust.Play();
+                wall = false;
+            }
+        }
         if (!CheckValid(currentInput))
             currentInput = null;
-        if (!steps.isPlaying)
-        {
-            steps.Play();
-            dust.Play();
-        }
         switch (currentInput)
         {
             case "W":
@@ -152,6 +161,8 @@ public class PacStudentController : MonoBehaviour
                 animator.SetTrigger("Right"); 
                 break;
             default:
+                if (wall == false)
+                    WallSound();
                 animator.SetFloat("Speed", 0.0f);
                 steps.Stop();
                 dust.Stop();
@@ -174,5 +185,35 @@ public class PacStudentController : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+    void WallSound()
+    {
+        collSound.PlayOneShot(wallCollide);
+        wall = true;
+    }
+
+    public void EatSound()
+    {
+        steps.PlayOneShot(eatPellet);
+    }
+
+    void CheckTeleport()
+    {
+        if(transform.position == new Vector3(-13, 0, 0))
+        {
+            transform.position = new Vector2(14, 0);
+            currY = 27;
+        }
+        else if(transform.position == new Vector3(14, 0, 0))
+        {
+            transform.position = new Vector2(-13, 0);
+            currY = 0;
+        }
+    }
+
+    public void GameOver()
+    {
+        steps.Stop();
     }
 }
